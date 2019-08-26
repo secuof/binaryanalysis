@@ -2437,6 +2437,9 @@ def lookup_identifier(scanqueue, reportqueue, cursor, conn, scanenv, topleveldir
 					#if scandebug:
 					#	print >>sys.stderr, "  doing battle royale between", close
 					## reverse sort close, then best = close_sorted[0][0]
+					for c in close:
+						if avgscores[language].get(c) is None:
+							avgscores[language][c] = 0
 					close_sorted = map(lambda x: (x, avgscores[language][x]), close)
 					close_sorted = sorted(close_sorted, key = lambda x: x[1], reverse=True)
 					## If we don't have a unique score *at all* it is likely that everything
